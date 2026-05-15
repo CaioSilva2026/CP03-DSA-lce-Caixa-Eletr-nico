@@ -7,6 +7,10 @@ float saldo_total = 0;
 
 //Variáveis verificar_extrato()
 
+float verificar_saldos[3];
+char verificar_operacao[3] = {' ', ' ', ' '};
+float verificar_valor_op[3];
+
 //Variáveis realizar_saque()
 
 //Variáveis realizar_deposito()
@@ -70,6 +74,7 @@ int realizar_deposito(float saldo_atual) {
         printf("\n");
 
         if (valor_deposito > 0) {
+
             saldo_atual += valor_deposito;
             printf("Deposito realizado!\n");
             printf("Saldo atualizado: R$%.2f\n", saldo_atual);
@@ -82,6 +87,25 @@ int realizar_deposito(float saldo_atual) {
 
     return saldo_atual;
 }
+
+/*int verificar_extrato {
+    
+    printf("===== EXTRATO =====\n");
+    for(int i = 0; i < 3; i++) {
+
+        if(verificar_operacao[i] == 'D') {
+            printf("Deposito: R$%.2f\n", verificar_saldos[i]);
+        }
+
+        else if(verificar_operacao[i] == 'S') {
+            printf("Saque: R$%.2f\n", verificar_saldos[i]);
+        }
+    }
+
+    printf("-------------------\n");
+    printf("Saldo final: R$%.2f\n\n", saldo_total);
+}
+*/
 
 int main(){    
     int opcao_escolhida = menu();
