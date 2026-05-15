@@ -5,9 +5,10 @@ float saldo_total = 0;
 
 //Variáveis consultar_saldo()
 
-
-
 //Variáveis verificar_extrato()
+
+char extrato[100][50];
+int totalExtrato = 0;
 
 //Variáveis realizar_saque()
 
@@ -56,15 +57,14 @@ float realizar_saque(float saldo_atual) {
         printf("Saque autorizado, aguarde a contagem das cedulas\n");
         printf("Saldo atual: ");
         printf("R$ %.2f\n", saldo_atual);
+        sprintf(extrato[totalExtrato], "Saque: -R$ %.2f", valor_saque);
+        totalExtrato++;
     }else{
         printf("Saldo insuficiente\n");
     }
 
     return saldo_atual;
 }
-
-
-
 
 int realizar_deposito(float saldo_atual) {
     float valor_deposito = 0;
@@ -79,8 +79,10 @@ int realizar_deposito(float saldo_atual) {
             saldo_atual += valor_deposito;
             printf("Deposito realizado!\n");
             printf("Saldo atualizado: R$%.2f\n", saldo_atual);
+            sprintf(extrato[totalExtrato], "Deposito: -R$ %.2f", valor_deposito);
+            totalExtrato++;
             printf("\n");
-        } else {
+        } else{
             printf("Valor invalido! Tente novamente com um valor positivo.\n");
             printf("\n");
         }
@@ -89,15 +91,29 @@ int realizar_deposito(float saldo_atual) {
     return saldo_atual;
 }
 
-
-
-
 void verificar_saldo(float saldo_total){
 
     printf("\n=========================\n");
     printf("Saldo Atual: R$ %.2f\n", saldo_total);
     printf("=========================\n");
 
+}
+
+void verificarExtrato() {
+    printf("\n==================\n");
+    printf(" EXTRATO ");
+    printf("\n==================\n");
+
+    if(totalExtrato == 0){
+        printf("Nenhuma movimentacao feita");
+    }else{
+        
+        for(int i = 0; i < totalExtrato; i++){
+            printf("%s\n", extrato[i]);
+        }
+    }
+
+    printf("------------------------\n");
 }
 
 int main(){    
@@ -110,7 +126,7 @@ int main(){
             break;
 
             case 2:
-
+                    verificarExtrato();
             break;
 
             case 3:
