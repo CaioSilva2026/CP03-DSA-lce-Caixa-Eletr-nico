@@ -1,6 +1,7 @@
 #include<stdio.h>
 //Variáveis gerais
 float saldo_total = 0;
+
 //Variáveis consultar_saldo()
 
 //Variáveis verificar_extrato()
@@ -33,26 +34,51 @@ int menu(){
     return opcao;
 }
 
-float realizar_deposito(float saldo) {
+int realizar_deposito() {
+    float valor_deposito = 0;
 
-    while (saldo_total <= 0) {
+    while (valor_deposito <= 0) {
         printf("Digite o valor do deposito: ");
-        scanf("%f", &saldo_total);
+        scanf("%f", &valor_deposito);
+        printf("\n");
 
-        if (saldo_total > 0) {
-            saldo += saldo_total;
+        if (valor_deposito > 0) {
+            saldo_total += valor_deposito;
             printf("Deposito realizado!\n");
+            printf("Saldo atualizado: R$%.2f\n", saldo_total);
+            printf("\n");
         } else {
             printf("Valor invalido! Tente novamente com um valor positivo.\n");
+            printf("\n");
         }
     }
 
-    return saldo;
+    return 0;
 }
 
-int main(){
-    while(menu() != 5){
+int main(){    
+    int opcao_escolhida = menu();
+    
+    while(opcao_escolhida != 5){
+        switch(opcao_escolhida){
+            case 1:
 
+            break;
+
+            case 2:
+
+            break;
+
+            case 3:
+
+            break;
+
+            case 4:
+                realizar_deposito();
+            break;            
+        }
+
+        opcao_escolhida = menu();
     }
 
     printf("Muito obrigado por utilizar nosso Caixa Eletronico!\n");
