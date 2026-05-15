@@ -109,7 +109,7 @@ void verificar_saldo(float saldo_total){
     printf("\n");
 }
 
-void verificarExtrato() {
+void verificarExtrato(float saldo_total) {
     printf("-------------------------------\n");
     printf("           EXTRATO             \n");
     printf("-------------------------------\n");
@@ -124,6 +124,7 @@ void verificarExtrato() {
     }
 
     printf("\n");
+    printf("SALDO FINAL: R$%.2f", saldo_total);
 }
 
 int main(){    
@@ -136,7 +137,7 @@ int main(){
             break;
 
             case 2:
-                    verificarExtrato();
+                    verificarExtrato(saldo_total);
             break;
 
             case 3:
