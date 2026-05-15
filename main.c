@@ -1,5 +1,6 @@
 #include<stdio.h>
-
+//Variáveis gerais
+float saldo_total = 0;
 //Variáveis consultar_saldo()
 
 //Variáveis verificar_extrato()
@@ -30,6 +31,23 @@ int menu(){
     }
 
     return opcao;
+}
+
+float realizar_deposito(float saldo) {
+
+    while (saldo_total <= 0) {
+        printf("Digite o valor do deposito: ");
+        scanf("%f", &saldo_total);
+
+        if (saldo_total > 0) {
+            saldo += saldo_total;
+            printf("Deposito realizado!\n");
+        } else {
+            printf("Valor invalido! Tente novamente com um valor positivo.\n");
+        }
+    }
+
+    return saldo;
 }
 
 int main(){
