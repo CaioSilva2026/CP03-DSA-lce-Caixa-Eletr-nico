@@ -1,5 +1,6 @@
 #include<stdio.h>
 //Variáveis gerais
+
 float saldo_total = 0;
 
 //Variáveis consultar_saldo()
@@ -34,7 +35,33 @@ int menu(){
     return opcao;
 }
 
-int realizar_deposito() {
+float realizar_saque(float saldo_atual) {
+
+    float valor_saque;
+
+    printf("Saldo atual: ");
+    printf("R$ %.2f\n", saldo_atual);
+    printf("Qual valor voce deseja sacar? ");
+    scanf("%f", &valor_saque);
+
+    while(valor_saque<=0){
+        printf("Valor invalido, digite outro valor: ");
+        scanf("%f", &valor_saque);
+    }
+
+    if(valor_saque<saldo_atual){
+        saldo_atual -= valor_saque;
+        printf("Saque autorizado, aguarde a contagem das cedulas\n");
+        printf("Saldo atual: ");
+        printf("R$ %.2f\n", saldo_atual);
+    }else{
+        printf("Saldo insuficiente\n");
+    }
+
+    return saldo_atual;
+}
+
+int realizar_deposito(float saldo_atual) {
     float valor_deposito = 0;
 
     while (valor_deposito <= 0) {
@@ -43,9 +70,9 @@ int realizar_deposito() {
         printf("\n");
 
         if (valor_deposito > 0) {
-            saldo_total += valor_deposito;
+            saldo_atual += valor_deposito;
             printf("Deposito realizado!\n");
-            printf("Saldo atualizado: R$%.2f\n", saldo_total);
+            printf("Saldo atualizado: R$%.2f\n", saldo_atual);
             printf("\n");
         } else {
             printf("Valor invalido! Tente novamente com um valor positivo.\n");
@@ -53,7 +80,7 @@ int realizar_deposito() {
         }
     }
 
-    return 0;
+    return saldo_atual;
 }
 
 int main(){    
@@ -71,10 +98,12 @@ int main(){
 
             case 3:
 
+                saldo_total = realizar_saque(saldo_total);
+
             break;
 
             case 4:
-                realizar_deposito();
+                saldo_total = realizar_deposito(saldo_total);
             break;            
         }
 
