@@ -3,15 +3,9 @@
 //Variáveis gerais
 float saldo_total = 0;
 
-//Variáveis consultar_saldo()
-
 //Variáveis verificar_extrato()
 char extrato[100][50];
 int totalExtrato = 0;
-
-//Variáveis realizar_saque()
-
-//Variáveis realizar_deposito()
 
 
 int menu(){
@@ -24,6 +18,7 @@ int menu(){
     printf("Selecione o que deseja fazer: \n1- Consultar Saldo \n2- Verificar Extrato \n3- Realizar Saque \n4- Realizar Deposito \n5- Sair \n");
     printf("Opcao: ");
     scanf("%d", &opcao);
+    while(getchar() != '\n');
     printf("\n");
 
     while(opcao < 1 || opcao > 5){
@@ -31,6 +26,7 @@ int menu(){
         printf("1- Consultar Saldo \n2- Verificar Extrato \n3- Realizar Saque \n4- Realizar Deposito \n5- Sair \n");
         printf("Opcao: ");
         scanf("%d", &opcao);
+        while(getchar() != '\n');
         printf("\n");
     }
 
@@ -48,14 +44,16 @@ float realizar_saque(float saldo_atual) {
     printf("R$ %.2f\n", saldo_atual);
     printf("Qual valor voce deseja sacar? R$");
     scanf("%f", &valor_saque);
+    while(getchar() != '\n');
     printf("\n");
 
     while(valor_saque<=0){
         printf("Valor invalido, digite outro valor: R$");
         scanf("%f", &valor_saque);
+        while(getchar() != '\n');
     }
 
-    if(valor_saque<saldo_atual){
+    if(valor_saque<=saldo_atual){
         saldo_atual -= valor_saque;
         printf("Saque autorizado, aguarde a contagem das cedulas\n");
         printf("\n");
@@ -72,7 +70,7 @@ float realizar_saque(float saldo_atual) {
     return saldo_atual;
 }
 
-int realizar_deposito(float saldo_atual) {
+float realizar_deposito(float saldo_atual) {
     float valor_deposito = 0;
 
     printf("-------------------------------\n");
@@ -82,6 +80,7 @@ int realizar_deposito(float saldo_atual) {
     while (valor_deposito <= 0) {
         printf("Digite o valor do deposito: R$");
         scanf("%f", &valor_deposito);
+        while(getchar() != '\n');
         printf("\n");
 
         if (valor_deposito > 0) {
@@ -109,7 +108,7 @@ void verificar_saldo(float saldo_total){
     printf("\n");
 }
 
-void verificarExtrato(float saldo_total) {
+void verificar_extrato(float saldo_total) {
     printf("-------------------------------\n");
     printf("           EXTRATO             \n");
     printf("-------------------------------\n");
@@ -129,15 +128,15 @@ void verificarExtrato(float saldo_total) {
 
 int main(){    
     int opcao_escolhida = menu();
-    
-    while(opcao_escolhida != 5){
+
+    do{
         switch(opcao_escolhida){
             case 1:
                    verificar_saldo(saldo_total);
             break;
 
             case 2:
-                    verificarExtrato(saldo_total);
+                    verificar_extrato(saldo_total);
             break;
 
             case 3:
@@ -150,7 +149,7 @@ int main(){
         }
 
         opcao_escolhida = menu();
-    }
+    }while(opcao_escolhida != 5);
 
     printf("Muito obrigado por utilizar nosso Caixa Eletronico!\n");
     printf("Sistema Encerrado!");
