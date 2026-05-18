@@ -61,7 +61,7 @@ float realizar_saque(float saldo_atual) {
         }            
     }
     if(tent>=3){
-        printf("Limite de tentativas excedido, tente novamente mais tarde\n");
+        printf("Limite de tentativas excedido, reinicie o sistema para tentar novamente\n");
     }else{
         if(valor_saque>1000){
             printf("Limite diario excedido\n");
@@ -131,7 +131,7 @@ void verificar_extrato(float saldo_total) {
     }else{
         
         int quantidade = totalExtrato < 3 ? totalExtrato : 3;
-        int inicio = totalExtrato % 3;
+        int inicio = totalExtrato <= 3 ? 0: totalExtrato % 3;
 
         for (int i = 0; i < quantidade; i++) {
             printf("%s\n", extrato[(inicio + i) % 3]);
