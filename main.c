@@ -3,7 +3,7 @@
 
 //Variáveis gerais
 float saldo_total = 0;
-int tent = 0;
+int tent = 1;
 
 //Variáveis verificar_extrato()
 char extrato[3][50];
@@ -50,17 +50,14 @@ float realizar_saque(float saldo_atual) {
     printf("\n");
 
 
-    while(valor_saque<=0){
+    while(valor_saque<=0 && tent<3){
         tent += 1;
-        if(tent>=3){
-            break;
-        }else{
-        printf("Valor invalido, digite outro valor: R$");
+        printf("Valor invalido! Tentativa %d de 3. Digite outro valor: R$", tent);
         scanf("%f", &valor_saque);
         while(getchar() != '\n');
         }            
-    }
-    if(tent>=3){
+
+    if(valor_saque<=0 || tent>=3){
         printf("Limite de tentativas excedido, reinicie o sistema para tentar novamente\n");
     }else{
         if(valor_saque>1000){
